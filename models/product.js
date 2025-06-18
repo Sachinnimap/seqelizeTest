@@ -19,14 +19,40 @@ const product = sequelize.define('product',{
         allowNull : true
     },
     type : {
-        type  : DataTypes.ENUM("FOOD","CLOTH","FOOTWEAR","GROCCERY")
+        type  : DataTypes.ENUM("FOOD","CLOTH","FOOTWEAR","GROCCERY"),
+        validate : {
+            // isIn :{
+            //     args : [['FOOD',"CLOTH","FOOTWEAR","GROCCERY"]],
+            //     msg : "Must be 'FOOD', 'CLOTH', 'FOOTWEAR' or 'GROCCERY'"
+            // },
+            checkEnum(value) { // custom validators
+                console.log(value)
+                const isValid =  ["FOOD","CLOTH","FOOTWEAR","GROCCERY"].includes(value)
+                
+                if(!isValid){
+                    throw new Error("Must be data from ____ 'FOOD', 'CLOTH', 'FOOTWEAR' or 'GROCCERY'")
+                }
+            }
+        },
+        allowNull : false
     },
     desc : {
         type : DataTypes.STRING
     },
     price :{
         type : DataTypes.INTEGER,
-        allowNull : false
+        allowNull : false,
+        validate: {
+            // isInt : {
+            //     msg : "price must be a number!"
+            // }
+            //  isFloat  :{
+            //     msg : "price must be number1"
+            // }
+            isFloat  :{
+                msg : "price must be number1"
+            }
+        }
     },
     outOfStock : {
             type : DataTypes.BOOLEAN,

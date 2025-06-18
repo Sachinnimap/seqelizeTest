@@ -3,13 +3,12 @@ const {getProducts,getProduct,updateProduct,destroyProduct,createProduct} = requ
 const {upload} = require("../utils/uploads")
 const router = express.Router();
 
-router.route("/").get(getProducts).
-post(upload.single("image"),createProduct)
+router.route("/").get(getProducts).post(upload.single("image"),createProduct)
 // post(upload.array("image",5),createProduct)
-post (upload.fields([
-    {name : 'image',maxCount: 5},
-    {name : "profile",maxCount: 10}
-]))
+// post (upload.fields([
+//     {name : 'image',maxCount: 5},
+//     {name : "profile",maxCount: 10}
+// ]))
 router.route("/:id").get(getProduct).put(updateProduct).delete(destroyProduct)
 
 

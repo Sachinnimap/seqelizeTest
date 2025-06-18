@@ -11,8 +11,8 @@ async function getUsersById(userId){
 
 async function addUser(data){
     console.log("data",data)
-    const {username,password,email,firstName,lastName,role} = data;
-     await UserModel.create({username,password,email,firstName,lastName,role})
+    const {username,password,email,firstName,lastName,role,mobileNumber} = data;
+     await UserModel.create({username,password,email,firstName,lastName,role,mobileNumber})
     return null
 }
 

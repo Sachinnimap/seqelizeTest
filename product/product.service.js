@@ -9,8 +9,8 @@ async function getProductById(productId){
 }
 
 async function addProduct(data){
-        const {name,type,desc,price,outOfStock,country,manufacturedBy,image} = data;
-        await ProductModel.create({name,type,desc,price,outOfStock,country,manufacturedBy,image})
+        const {name,type,desc,price,outOfStock,country,manufacturedBy,image,mobileNumber} = data;
+        await ProductModel.create({name,type,desc,price,outOfStock,country,manufacturedBy,image,mobileNumber})
         return null
 }
 

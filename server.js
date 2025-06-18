@@ -25,7 +25,7 @@ app.use((err, req, res, next) => {
 const PORT = 5000;
 
 sequelize
-  .sync({ alter: false })
+  .sync({ alter: false})
   .then(() => {
     console.log("Database synced!");
     app.listen(PORT, () => {
