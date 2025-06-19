@@ -1,21 +1,28 @@
-const {ProductModel} = require("../models")
+const {Product, User} = require("../models")
 
  async function getAllProducts () {
-        return await ProductModel.findAll()
+        return await Product.findAll({
+                include : [
+                        {
+                                model : User,
+                                as : "user"
+                        }
+                ]
+        })
 }
 
 async function getProductById(productId){
-                return await ProductModel.findOne({where: {id : productId}})
+                return await Product.findOne({where: {id : productId}})
 }
 
 async function addProduct(data){
-        const {name,type,desc,price,outOfStock,country,manufacturedBy,image,mobileNumber} = data;
-        await ProductModel.create({name,type,desc,price,outOfStock,country,manufacturedBy,image,mobileNumber})
+        const {name,type,desc,price,outOfStock,country,manufacturedBy,image,mobileNumber,userId} = data;
+        await Product.create({name,type,desc,price,outOfStock,country,manufacturedBy,image,mobileNumber,userId})
         return null
 }
 
 async function modifyProduct(productId,data){
-                        const [response] = await ProductModel.update(data,{
+                        const [response] = await Product.update(data,{
                                 where : {
                                         id :productId
                                 }
@@ -28,7 +35,7 @@ async function modifyProduct(productId,data){
 }
 
 async function deleteProduct(productId){
-                await ProductModel.destroy({where:{id : productId}})
+                await Product.destroy({where:{id : productId}})
                 return null
 }
 

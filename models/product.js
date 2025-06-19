@@ -1,6 +1,16 @@
 
 module.exports =  (sequelize,DataTypes) => {
 const product = sequelize.define('product',{
+
+    userId : {
+        type :DataTypes.INTEGER,
+        allowNull : true,
+        reference: {
+            model : "user",
+            key : "id"
+        },
+        // unique : true // if ONE-TO-ONE so user cannot create multiple product with same user 
+    },
     name : {
         type : DataTypes.STRING,
         allowNull:false,
@@ -74,6 +84,22 @@ const product = sequelize.define('product',{
     timestamps : true,
     paranoid : true
 })
+
+// product.associate  = (models)=>{
+//     product.belongsTo(models.User,{foreignKey:"userId",as :"user"})
+// }
+
+
+
+// product.associate = (models)=> {
+//     product.belongsTo(models.User,{foreignKey : "userId", as :"user"})
+// }
+
+product.associate = (models)=>{
+    product.belongsToMany(models.User, { foreignKey : "userId", as : "user",through :"userProduct"})
+}
+
+
 return product;
 }
 
