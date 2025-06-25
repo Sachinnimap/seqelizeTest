@@ -1,4 +1,4 @@
-const { User, Product } = require("../models")
+const { User, Product } = require("../../models")
 
 
 async function getAllUsers(){
@@ -13,7 +13,15 @@ async function getAllUsers(){
 }
 
 async function getUsersById(userId){
-    return await User.findOne({where : {id : userId}})
+    return await User.findOne({
+        include :[
+            {
+                model  : Product,
+                as : "product"
+            }
+        ],
+        where : {id : userId}
+    })
 }
 
 async function addUser(data){

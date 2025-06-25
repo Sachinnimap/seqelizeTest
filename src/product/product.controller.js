@@ -16,6 +16,7 @@ const getProduct = async(req,res) => {
 const createProduct = async(req,res) =>{
 console.log("req.file",req.file)
 console.log("req.body",req.body)
+console.log("req.user",req.user) //we get user name from attach middleware
 
     const data = req.body
       await addProduct(data)

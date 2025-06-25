@@ -27,3 +27,25 @@ const filter = (req,file,cb)=>{
 
 
 module.exports.upload = multer({storage : storage,fileFilter: filter})
+
+
+
+
+// let obj = {
+//     name:"abc",
+//     age: undefined,
+//     fname:null,
+//     key:7,
+//     bool: false,
+//     str: '',
+//     bol2 : true
+// }
+
+//     let truthy = {}
+// for(let val in obj){
+//    let newOne =  obj[val] ?? false
+//    if(newOne){
+//     truthy[`${val}`] = obj[val] 
+//    }
+// }
+// console.log(truthy)

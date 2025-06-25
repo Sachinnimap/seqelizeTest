@@ -1,6 +1,6 @@
 const express = require("express");
 const {getProducts,getProduct,updateProduct,destroyProduct,createProduct} = require('./product.controller')
-const {upload} = require("../utils/uploads")
+const {upload} = require("../../utils/uploads")
 const router = express.Router();
 
 router.route("/").get(getProducts).post(upload.single("image"),createProduct)

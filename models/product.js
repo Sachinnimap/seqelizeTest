@@ -78,6 +78,18 @@ const product = sequelize.define('product',{
     // reviews  :{  TODO - review with- rating,feedback with array
     //     type : DataTypes.ARRAY
     // }
+    isAvailable : {
+       type :  DataTypes.STRING // DataTypes.ENUM("Y","N"),
+    //    validate : {
+    //         checkType(value){
+    //             const isInclude = ["Y","N"].includes(value)
+    //             if(!isInclude){
+    //                 throw new Error("available should be Y or N")
+    //             }
+    //         }
+    //    }
+    }
+    
 },
 {
     tableName : "product",
