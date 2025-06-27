@@ -2,11 +2,13 @@ const express = require("express");
 const productRoutes = require("./src/product/product.route");
 const userRoutes = require("./src/user/user.route");
 const bookRoutes = require("./src/book/book.route")
+const itemRoutes =  require("./src/item/item.route")
 const { sequelize } = require("./models");
 const path = require("path");
 const cors = require("cors");
 const attachUser  = require("./middleware/attachUser");
-const { connectDB } = require("./config/mdatabase");
+// const { connectDB } = require("./config/mdatabase");
+const {connectDB} = require("./config/mondatabase")
 
 const app = express();
 app.use(express.json());
@@ -40,6 +42,7 @@ app.use(attachUser) //attach user in request
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/books",bookRoutes)
+app.use("/items",itemRoutes)
 
 app.use((err, req, res, next) => {
   //   console.log("err", err);
