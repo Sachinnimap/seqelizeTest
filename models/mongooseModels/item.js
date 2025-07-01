@@ -62,6 +62,38 @@ const itemSchema = new mongoose.Schema({
     versionKey :false
 })
 
+itemSchema.statics.findByRole = function(role){
+    console.log("Roll method called!!!")
+    return this.find({role})
+}
+
+itemSchema.statics.findByPrice  = function(price){
+    console.log("Price method called!!!")
+    return this.find({price :{$gt : price }})
+}
+
+itemSchema.statics = { // for multiple static method so we can write inside one method call
+        findByEmail(email){
+            return this.find({email})
+        },
+        findByName(name){
+            return this.find({name})
+        }
+}
+
+itemSchema.methods.getFullName = function (name,email){
+        return `${name} ${email}`
+    }
+
+itemSchema.methods =  {
+            getCapName(name){
+                return name.toUpperCase()
+            },
+            getEmailDomain(email){
+                return email.split("@")[1]
+            }
+} 
+
 const Item =  mongoose.model("Item",itemSchema)
 
 module.exports = {Item}; 
