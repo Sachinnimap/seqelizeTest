@@ -79,7 +79,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       role: {
         //TODO  -- ADMIN ,SUPER ADMIN
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
       },
     },
 
@@ -91,7 +91,7 @@ module.exports = (sequelize, DataTypes) => {
       // },
       hooks: {
         beforeCreate: async (user) => {
-          console.log("before created called");
+          console.log("before created called")
           user.password = "latestPASSWORD";
         },
         afterCreate: async (user) => {
@@ -116,11 +116,11 @@ module.exports = (sequelize, DataTypes) => {
 //     User.hasMany(models.Product, { foreignKey: "userId", as: "product" });
 //   };
 
-User.associate = (models)=>{
-    //on delete will delete his referece data also
-    //on cascade  will update will change userId if users id is changed in users table!
-    User.hasMany(models.Product, { foreignKey : 'userId', as :"product" ,onDelete : "CASCADE" , onUpdate:"CASCADE"})
-}
+// User.associate = (models)=>{
+//     //on delete will delete his referece data also
+//     //on cascade  will update will change userId if users id is changed in users table!
+//     User.hasMany(models.Product, { foreignKey : 'userId', as :"product" ,onDelete : "CASCADE" , onUpdate:"CASCADE"})
+// }
 
   return User;
 };

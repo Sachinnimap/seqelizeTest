@@ -2,12 +2,12 @@ const { Product, User } = require("../../models");
 
 async function getAllProducts() {
   return await Product.findAll({
-    include: [
-      {
-        model: User,
-        as: "user",
-      },
-    ],
+    // include: [
+    //   {
+    //     model: User,
+    //     as: "user",
+    //   },
+    // ],
   });
 }
 

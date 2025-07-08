@@ -3,23 +3,23 @@ const { User, Product } = require("../../models")
 
 async function getAllUsers(){
     return await User.findAll({
-        include : [
-            {
-                model  :Product,
-                as : "product"
-            }
-        ]
+        // include : [
+        //     {
+        //         model  :Product,
+        //         as : "product"
+        //     }
+        // ]
     })
 }
 
 async function getUsersById(userId){
     return await User.findOne({
-        include :[
-            {
-                model  : Product,
-                as : "product"
-            }
-        ],
+        // include :[
+        //     {
+        //         model  : Product,
+        //         as : "product"
+        //     }
+        // ],
         where : {id : userId}
     })
 }

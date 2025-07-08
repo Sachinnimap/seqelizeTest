@@ -8,7 +8,8 @@ const path = require("path");
 const cors = require("cors");
 const attachUser  = require("./middleware/attachUser");
 // const { connectDB } = require("./config/mdatabase");
-const {connectDB} = require("./config/mondatabase")
+const {connectDB} = require("./config/mondatabase");
+const { login } = require("./src/auth/auth.controller");
 
 const app = express();
 app.use(express.json());
@@ -38,7 +39,7 @@ app.use(attachUser) //attach user in request
 //   next();
 // });
 
-
+app.post("/login",login)
 app.use("/products", productRoutes);
 app.use("/users", userRoutes);
 app.use("/books",bookRoutes)
@@ -57,11 +58,25 @@ app.use((err, req, res, next) => {
 
 const PORT = 5000;
 
-// sequelize
-//   .sync({ alter: true })
-//   .
-  connectDB().then(() => {
-    // console.log("Database synced!");
+// // sequelize
+// //   .sync({ alter: true })
+// //   .
+//   connectDB().then(() => {
+//     // console.log("Database synced!");
+//     app.listen(PORT, () => {
+//       console.log(`server is running on port ${PORT}`);
+//     });
+//   })
+//   .catch((error) => {
+//     console.error("Failed to sync DB ", error);
+//   });
+
+
+
+sequelize
+  .sync({ alter: true })
+  .then(() => {
+    console.log("Database synced!");
     app.listen(PORT, () => {
       console.log(`server is running on port ${PORT}`);
     });

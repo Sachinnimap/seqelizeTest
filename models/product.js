@@ -107,9 +107,9 @@ const product = sequelize.define('product',{
 //     product.belongsTo(models.User,{foreignKey : "userId", as :"user"})
 // }
 
-product.associate = (models)=>{
-    product.belongsToMany(models.User, { foreignKey : "userId", as : "user",through :"userProduct"})
-}
+// product.associate = (models)=>{
+//     product.belongsToMany(models.User, { foreignKey : "userId", as : "user",through :"userProduct"})
+// }
 
 
 return product;

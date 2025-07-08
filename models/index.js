@@ -2,10 +2,16 @@ const sequelize = require('../config/database')
 const { DataTypes } = require('sequelize')
 const user = require('./user')
 const product = require("./product")
+const permission =  require("./permission")
+const roles = require("./role")
+const rolePermission =  require("./rolePermission")
 
 const db = {}
 db.User = user(sequelize,DataTypes)
 db.Product = product(sequelize,DataTypes)
+db.Permissions = permission(sequelize,DataTypes)
+db.Roles = roles(sequelize,DataTypes)
+db.RolePermission = rolePermission(sequelize,DataTypes)
 
 // __________________________
 // - ONE to ONE -

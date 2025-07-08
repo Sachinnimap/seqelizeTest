@@ -1,15 +1,17 @@
 const express = require("express");
 const {getProducts,getProduct,updateProduct,destroyProduct,createProduct} = require('./product.controller')
-const {upload} = require("../../utils/uploads")
+const {upload} = require("../../utils/uploads");
+const { authHandler } = require("../../middleware/authHandler");
+const { roleHandler } = require("../../middleware/roleHandler");
 const router = express.Router();
 
-router.route("/").get(getProducts).post(upload.single("image"),createProduct)
+router.route("/").get(authHandler,roleHandler, getProducts).post(authHandler,roleHandler,upload.single("image"),createProduct)
 // post(upload.array("image",5),createProduct)
 // post (upload.fields([
 //     {name : 'image',maxCount: 5},
 //     {name : "profile",maxCount: 10}
 // ]))
-router.route("/:id").get(getProduct).put(updateProduct).delete(destroyProduct)
+router.route("/:id").get(authHandler,roleHandler,getProduct).put(authHandler,roleHandler,updateProduct).delete(authHandler,roleHandler,destroyProduct)
 
 
 module.exports = router;
