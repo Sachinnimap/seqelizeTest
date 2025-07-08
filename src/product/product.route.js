@@ -3,9 +3,10 @@ const {getProducts,getProduct,updateProduct,destroyProduct,createProduct} = requ
 const {upload} = require("../../utils/uploads");
 const { authHandler } = require("../../middleware/authHandler");
 const { roleHandler } = require("../../middleware/roleHandler");
+const { sessionMiddleware } = require("../../middleware/sessionMiddleware");
 const router = express.Router();
 
-router.route("/").get(authHandler,roleHandler, getProducts).post(authHandler,roleHandler,upload.single("image"),createProduct)
+router.route("/").get(sessionMiddleware, authHandler,roleHandler, getProducts).post(authHandler,roleHandler,upload.single("image"),createProduct)
 // post(upload.array("image",5),createProduct)
 // post (upload.fields([
 //     {name : 'image',maxCount: 5},

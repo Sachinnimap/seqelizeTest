@@ -1,4 +1,5 @@
 const { User, Product } = require("../../models")
+const bycrypt =  require("bcrypt")
 
 
 async function getAllUsers(){
@@ -25,9 +26,15 @@ async function getUsersById(userId){
 }
 
 async function addUser(data){
-    console.log("data",data)
+   
     const {username,password,email,firstName,lastName,role,mobileNumber} = data;
-     await User.create({username,password,email,firstName,lastName,role,mobileNumber})
+
+
+    const hassPassword = await bycrypt.hash(password,10)
+
+    console.log("HassPassword:-",hassPassword)
+
+     await User.create({username,password : hassPassword,email,firstName,lastName,role,mobileNumber})
     return null
 }
 

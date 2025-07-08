@@ -10,11 +10,18 @@ const attachUser  = require("./middleware/attachUser");
 // const { connectDB } = require("./config/mdatabase");
 const {connectDB} = require("./config/mondatabase");
 const { login } = require("./src/auth/auth.controller");
+const session =  require("express-session")
 
 const app = express();
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 app.use(attachUser) //attach user in request
+app.use(session({
+  secret : "SECRETKEY",
+  resave :false,
+  saveUninitialized : true,
+  cookie :{secure : true}
+}))
 
 // app.use(cors()); //this will allowed all origins calls like ,  from any  domain - 3000,3002,3006,3008,3009...
 // app.use(cors({ origin: "localhost:3000" }));
@@ -41,7 +48,7 @@ app.use(attachUser) //attach user in request
 
 app.post("/login",login)
 app.use("/products", productRoutes);
-app.use("/users", userRoutes);
+// app.use("/users", userRoutes);
 app.use("/books",bookRoutes)
 app.use("/items",itemRoutes)
 

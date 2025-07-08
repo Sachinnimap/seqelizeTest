@@ -92,7 +92,7 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeCreate: async (user) => {
           console.log("before created called")
-          user.password = "latestPASSWORD";
+          // user.password = "latestPASSWORD";
         },
         afterCreate: async (user) => {
           console.log("after create!");
