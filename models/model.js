@@ -176,3 +176,58 @@ ________________________________________________________________
 //       ...(statusList.length > 0 && {interview_status :  {[Op.in]: statusList}}),
 //       ...(candidates.length > 0 && {resource :  {[Op.in]: candidates}}),
 //       ...(technologies.length > 0 && {"$resourceData.primary_skill$" : {[Op.in]:technologies }}),
+
+
+
+
+// ____________________________________________________________________________________________
+
+
+
+
+
+
+   @ApiProperty()
+  @IsOptional()
+  @IsString()
+  client?: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  technology?: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  candidate?: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  vendor?: string;
+
+  @ApiProperty()
+  @IsOptional()
+  @IsString()
+  status?: string;
+
+
+const { limit, offset, search, fromDate, toDate,client,technology,candidate,vendor,status } = param;
+    
+
+    // converted string array ("[]") to array
+    const clients =  client ? client.split(",").map(Number) : []
+    const vendors =  vendor ? vendor.split(",") : []
+    const statusList = status ? status.split(",") : []
+    const candidates = candidate ? candidate.split(",") : []
+    const technologies = technology ? technology.split(",") : []
+    
+
+    const whereClause: any = {
+      deleted: false,
+        ...(clients.length > 0 && {client : {[Op.in]: clients}}),
+      ...(vendors.length > 0 && {vendor_id : {[Op.in]:vendors}}),
+      ...(statusList.length > 0 && {interview_status :  {[Op.in]: statusList}}),
+      ...(candidates.length > 0 && {resource :  {[Op.in]: candidates}}),
+      ...(technologies.length > 0 && {"$resourceData.primary_skill$" : {[Op.in]:technologies }}),

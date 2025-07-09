@@ -26,7 +26,7 @@ async function login  (req,res){
           console.log("token",token)
 
           req.session.userId = getUser.id
-
+  
         res.status(200).json(token)
 }
 
