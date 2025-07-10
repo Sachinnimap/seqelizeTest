@@ -11,6 +11,8 @@ const attachUser  = require("./middleware/attachUser");
 const {connectDB} = require("./config/mondatabase");
 const { login } = require("./src/auth/auth.controller");
 const session =  require("express-session")
+const passport = require("passport")
+require("./middleware/auth2.handler")
 
 const app = express();
 app.use(express.json());
@@ -29,6 +31,9 @@ app.use(session(
     }
   }
 ))
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 // app.use(cors()); //this will allowed all origins calls like ,  from any  domain - 3000,3002,3006,3008,3009...
 // app.use(cors({ origin: "localhost:3000" }));
@@ -53,6 +58,29 @@ app.use(session(
 //   next();
 // });
 
+app.get("/",(req,res)=>{
+    res.send("<a href='/auth/google'> Auth login with google </a>")
+})
+app.get("/dashboard",(req,res)=>{
+  res.send("Welcome to dashboard!")
+})
+
+app.get("/logout", async (req,res,next)=>{
+  req.logout((err)=>{
+    if(err){
+      return next(err)
+    }
+    res.redirect("/")
+  })
+  
+})
+
+app.get("/auth/google",passport.authenticate("google", {scope :["profile", "email"],prompt: "select_account"}))
+app.get("/auth/google/callback",passport.authenticate("google",{failureRedirect:"/"}),(req,res)=>{
+  console.log("res",req.user)
+  // console.log()
+  res.redirect("/dashboard")
+})
 app.post("/login",login)
 app.use("/products", productRoutes);
 // app.use("/users", userRoutes);
@@ -70,7 +98,8 @@ app.use((err, req, res, next) => {
   });
 });
 
-const PORT = 5000;
+
+const PORT = 3000;
 
 // // sequelize
 // //   .sync({ alter: true })
