@@ -12,8 +12,9 @@ const getUser = async(req,res)=>{
 }
 
 const createUser = async(req,res)=>{
-    console.log('req.file',req.file)
+    // console.log('req.file',req.file)
     console.log("req.body",req.body)
+    console.log("headers",req.headers)
     const data =  req.body
     await addUser(data)
     res.status(201).json("User created successfully")

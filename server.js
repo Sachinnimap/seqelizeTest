@@ -83,7 +83,7 @@ app.get("/auth/google/callback",passport.authenticate("google",{failureRedirect:
 })
 app.post("/login",login)
 app.use("/products", productRoutes);
-// app.use("/users", userRoutes);
+app.use("/users", userRoutes);
 app.use("/books",bookRoutes)
 app.use("/items",itemRoutes)
 
@@ -99,7 +99,7 @@ app.use((err, req, res, next) => {
 });
 
 
-const PORT = 3000;
+const PORT = 5000;
 
 // // sequelize
 // //   .sync({ alter: true })
@@ -113,7 +113,6 @@ const PORT = 3000;
 //   .catch((error) => {
 //     console.error("Failed to sync DB ", error);
 //   });
-
 
 
 sequelize

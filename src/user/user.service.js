@@ -27,14 +27,16 @@ async function getUsersById(userId){
 
 async function addUser(data){
    
-    const {username,password,email,firstName,lastName,role,mobileNumber} = data;
+    console.log("service-data",data)
+
+    // const {username,password,email,firstName,lastName,role,mobileNumber} = data;
 
 
-    const hassPassword = await bycrypt.hash(password,10)
+    // const hassPassword = await bycrypt.hash(password,10)
 
-    console.log("HassPassword:-",hassPassword)
+    // console.log("HassPassword:-",hassPassword)
 
-     await User.create({username,password : hassPassword,email,firstName,lastName,role,mobileNumber})
+    //  await User.create({username,password : hassPassword,email,firstName,lastName,role,mobileNumber})
     return null
 }
 
