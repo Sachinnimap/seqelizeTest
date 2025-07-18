@@ -36,13 +36,13 @@
 // console.log(undefined == null) //false
 
 
-const obj = {
-  valueOf() { return 10; },
-  toString() { return '5'; }
-};
+// const obj = {
+//   valueOf() { return 10; },
+//   toString() { return '5'; }
+// };
 
-console.log(obj + 1) // 11
-console.log('Value: ' + obj) //5
+// console.log(obj + 1) // 11
+// console.log('Value: ' + obj) //5
 
 
 // most subtle and confusing behaviors in JavaScript
@@ -70,25 +70,25 @@ console.log('Value: ' + obj) //5
 
 
 
-console.log(-false)   //-0    
-console.log(-true)    //-1    
-console.log(-'42')    //-42    
-console.log(-'')      //-0  
-console.log(-null)    //-0 
-console.log(-undefined)  //NaN 
-console.log(-[5])       //-5   
-console.log(-[1, 2])     //NaN
-console.log(-{})         //NaN
+// console.log(-false)   //-0    
+// console.log(-true)    //-1    
+// console.log(-'42')    //-42    
+// console.log(-'')      //-0  
+// console.log(-null)    //-0 
+// console.log(-undefined)  //NaN 
+// console.log(-[5])       //-5   
+// console.log(-[1, 2])     //NaN
+// console.log(-{})         //NaN
 
 
-console.log(parseInt("49.87234sdljk123"))//NaN
+// console.log(parseInt("49.87234sdljk123"))//NaN
 
-console.log(parseFloat("49.874djalk"))
+// console.log(parseFloat("49.874djalk"))
 
 
-console.log([] + [] - [] + []); //0
+// console.log([] + [] - [] + []); //0
 
-console.log([] + {} - [1]);// N
+// console.log([] + {} - [1]);// N
 
 // console.log(NaN + undefined) //NaN
 // console.log(undefined + NaN) //NaN
@@ -97,11 +97,16 @@ console.log([] + {} - [1]);// N
 // console.log(undefined + 'x') // undefinedX
 // console.log(NaN + 'x') NaNX
 
-
 // console.log(undefined == null) //
 
-const latest =  {namewere:""}
+// const latest =  {namewere:""}
 
-console.log(latest.prop)
+// console.log(latest.prop)
 
-consoo
+// consoo
+
+
+
+
+
+

@@ -168,3 +168,40 @@ select allergies , count(patient_id) as total_diagnosis from patients
 group bY allergies
 having allergies IS NOT NULL
 ORDER BY total_diagnosis DESC
+
+
+// const p1 = Promise.reject("one");
+// const p2 = Promise.reject("two");
+// const p3 = Promise.reject("three")
+// const p4 = Promise.reject("four")
+// const p5 = Promise.resolve("five")
+
+
+
+// const handPromise =  
+Promise.reject(Promise.reject(Promise.reject("FAILED")))
+.then((value)=> console.log("Value",value))
+.catch((err)=> console.log("ERROR",err))
+
+
+
+//all - array - 'str' - first reject
+
+// race - str - str - 
+
+//allSettled -arr of obj -  status -value-reason
+
+
+
+
+const handPromise =  Promise.all([p1,p2,p3,p4,p5])
+.then((value)=> console.log("Value",value))
+.catch((err)=> console.log("ERROR",err))
+
+
+
+function functHadl (promiseHandle){
+        promiseHandler.then((value)=> console.log(value))
+        promiseHandler.catch((err)=> console.log(err))
+}
+functHadl(Promise.("dklds"))
