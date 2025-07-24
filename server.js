@@ -31,8 +31,8 @@ app.use(session(
     }
   }
 ))
-app.use(passport.initialize())
-app.use(passport.session())
+// app.use(passport.initialize())
+// app.use(passport. ())
 
 
 // app.use(cors()); //this will allowed all origins calls like ,  from any  domain - 3000,3002,3006,3008,3009...

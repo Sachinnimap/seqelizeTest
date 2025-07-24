@@ -1,3 +1,5 @@
+const { set } = require("mongoose");
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define(
     "user",
@@ -56,19 +58,39 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
         field: "first_name",
+        set(value){
+            console.log("value_1",value)
+            this.setDataValue("firstName","raaaaaaaj")
+        },
+        get(value){
+          console.log("value_2",value)
+          // const data = 
+          return "sachinwarrr"
+        }
       },
       lastName: {
         type: DataTypes.STRING,
         field: "last_name",
+        get(value){
+          console.log("LastName_get",value)
+        },
+        set(value){
+          console.log("LastName_set",value)
+        }
       },
       fullName: {
         type: DataTypes.VIRTUAL, //this field not storing in memory just giving value on get call create , getAll , getbyId
-        get() {
-          return `${this.firstName} ${this.lastName}`;
-        },
-        set(value) {
-          throw new Error("cannot set fullName");
-        },
+        
+        set(value){
+    console.log("value",value)
+}
+        
+        // get() {
+        //   return `${this.firstName} ${this.lastName}`;
+        // },
+        // set(value) {
+        //   throw new Error("cannot set fullName");
+        // },
       },
       mobileNumber: {
         type: DataTypes.STRING,

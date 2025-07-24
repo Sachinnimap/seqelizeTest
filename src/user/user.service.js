@@ -29,14 +29,14 @@ async function addUser(data){
    
     console.log("service-data",data)
 
-    // const {username,password,email,firstName,lastName,role,mobileNumber} = data;
+    const {username,password,email,firstName,lastName,role,mobileNumber} = data;
 
 
-    // const hassPassword = await bycrypt.hash(password,10)
+    const hassPassword = await bycrypt.hash(password,10)
 
-    // console.log("HassPassword:-",hassPassword)
+    console.log("HassPassword:-",hassPassword)
 
-    //  await User.create({username,password : hassPassword,email,firstName,lastName,role,mobileNumber})
+     await User.create({username,password : hassPassword,email,firstName,lastName,role,mobileNumber})
     return null
 }
 
@@ -47,9 +47,22 @@ async function modifyUser(userId,data){
 }
 
 async function deleteUser(userId){
+
+    await User.increment({stock : 5},{where : {id : 5}}) 
+
+    //paranoid true - it will store data in db but  as deletedAt = true
      await User.delete(userId)
      return null
 }
 
+async function Increment(userId){
 
-module.exports = {getAllUsers,getUsersById,addUser,modifyUser,deleteUser}
+    //increment role - integer BY 5
+    await User.increment({role : 5},{where : {id : 5}}) 
+
+
+     return null 
+}
+
+
+module.exports = {getAllUsers,getUsersById,addUser,modifyUser,deleteUser,Increment}

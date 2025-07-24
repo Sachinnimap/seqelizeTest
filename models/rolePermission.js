@@ -9,10 +9,10 @@ const rolePermission = sequelize.define("role_permissions",{
     permission_id : {
         type : DataTypes.INTEGER
     }
-
 },
 {
     timestamps : true,
+    
 })
 
 return rolePermission;
