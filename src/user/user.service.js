@@ -1,8 +1,13 @@
 const { User, Product } = require("../../models")
 const bycrypt =  require("bcrypt")
+const  {Op}  =  require("sequelize")
 
 
-async function getAllUsers(){
+async function getAllUsers(query){
+
+        console.log("params:-",query)
+        console.log("params.username",query.username)
+
     return await User.findAll({
         // include : [
         //     {
@@ -10,10 +15,30 @@ async function getAllUsers(){
         //         as : "product"
         //     }
         // ]
+        where : {
+            id : [1,4,16]
+
+            //  where : {
+            // id : {
+            //   [Op.in]  : [1,4,5,16]
+            // }
+            // username  : {
+            //     // [Op.startsWith] : query.username,
+            //     // [Op.endsWith] : query.username
+            //     // [Op.like]  : `%${query.username}`
+            //     //[Op.like]  : `%${query.username}%`
+
+            // }
+        }
     })
 }
 
 async function getUsersById(userId){
+
+        await findOrCreate({where : {
+            id : userId
+        }})
+        
     return await User.findOne({
         // include :[
         //     {

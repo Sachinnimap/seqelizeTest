@@ -1,7 +1,8 @@
 const { addUser,deleteUser,getAllUsers,getUsersById, modifyUser}  = require("./user.service") 
 
 const getUsers = async(req,res)=>{
-    const response = await getAllUsers()
+    console.log("req.query",req.query.username)
+    const response = await getAllUsers(req.query)
     res.status(200).json(response)
 }
 
