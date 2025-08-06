@@ -7,7 +7,7 @@ async function getAllUsers(query){
 
         console.log("params:-",query)
         console.log("params.username",query.username)
-
+throw new Error("latest error found")
     return await User.findAll({
         // include : [
         //     {

@@ -88,7 +88,7 @@ app.use("/books",bookRoutes)
 app.use("/items",itemRoutes)
 
 app.use((err, req, res, next) => {
-  //   console.log("err", err);
+    console.log("err", err.message);
   //   console.log("req", req);
   //   console.log("res", res);
   const statusCode = err.statusCode || 500;
