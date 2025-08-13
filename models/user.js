@@ -54,36 +54,36 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
-      firstName: {
+      first_name: {
         type: DataTypes.STRING,
         allowNull: false,
         field: "first_name",
-        set(value){
-            console.log("value_1",value)
-            this.setDataValue("firstName","raaaaaaaj")
-        },
-        get(value){
-          console.log("value_2",value)
-          // const data = 
-          return "sachinwarrr"
-        }
+        // set(value){
+        //     console.log("value_1",value)
+        //     this.setDataValue("firstName","raaaaaaaj")
+        // },
+        // get(value){
+        //   console.log("value_2",value)
+        //   // const data = 
+        //   return "sachinwarrr"
+        // }
       },
-      lastName: {
+      last_name: {
         type: DataTypes.STRING,
         field: "last_name",
-        get(value){
-          console.log("LastName_get",value)
-        },
-        set(value){
-          console.log("LastName_set",value)
-        }
+        // get(value){
+        //   console.log("LastName_get",value)
+        // },
+        // set(value){
+        //   console.log("LastName_set",value)
+        // }
       },
       fullName: {
         type: DataTypes.VIRTUAL, //this field not storing in memory just giving value on get call create , getAll , getbyId
         
-        set(value){
-    console.log("value",value)
-}
+//         set(value){
+//     console.log("value",value)
+// }
         
         // get() {
         //   return `${this.firstName} ${this.lastName}`;

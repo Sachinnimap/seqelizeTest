@@ -1,22 +1,42 @@
-const { User, Product } = require("../../models")
+const { User, Product, sequelize } = require("../../models")
 const bycrypt =  require("bcrypt")
-const  {Op}  =  require("sequelize")
+const  {Op,Sequelize}  =  require("sequelize")
 
 
 async function getAllUsers(query){
 
-        console.log("params:-",query)
-        console.log("params.username",query.username)
-throw new Error("latest error found")
+//         console.log("params:-",query)
+//         console.log("params.username",query.username)
+// throw new Error("latest error found")
     return await User.findAll({
+
+                attributes : ['first_name','last_name', [Sequelize.literal('(select Max(role) from user)'),'totolUsers']],
+                // where : Sequelize.literal('role < 5 and last_name = "last"')
+                order : [['first_name',"DESC"],['last_name',"DESC"]],
+                where : Sequelize.where(Sequelize.col("role"), Op.eq, 5)
+                // attributes : ['first_name',[Sequelize.literal('(select COUNT(*) from user)'),'total']]
+
+                // attributes : [[Sequelize.fn("CONCAT", sequelize.col('first_name')," ",sequelize.col('last_name')),"name"],[sequelize.fn("MAX",sequelize.col("role")),"max_role"]],
+                // group : ['name'],
+                // where : {
+                //     first_name : {
+                //         [Op.like] : "firs%"
+                //     }
+                // },
+                // having  : {
+                //     max_role : {[Op.gt] : 4 }
+                // }
+            // attributes:['first_name',[Sequelize.fn('COUNT',Sequelize.col('id')),'data']],
+
+            // group : ['first_name']
         // include : [
         //     {
         //         model  :Product,
         //         as : "product"
         //     }
         // ]
-        where : {
-            id : [1,4,16]
+        // where : {
+        //     id : [1,4,16]
 
             //  where : {
             // id : {
@@ -29,7 +49,7 @@ throw new Error("latest error found")
             //     //[Op.like]  : `%${query.username}%`
 
             // }
-        }
+        // }
     })
 }
 
