@@ -5,6 +5,8 @@ const  {Op,Sequelize}  =  require("sequelize")
 
 async function getAllUsers(query){
 
+    'dkf'.charAt()
+
 //         console.log("params:-",query)
 //         console.log("params.username",query.username)
 // throw new Error("latest error found")
@@ -22,6 +24,7 @@ async function getAllUsers(query){
                 //     first_name : {
                 //         [Op.like] : "firs%"
                 //     }
+                
                 // },
                 // having  : {
                 //     max_role : {[Op.gt] : 4 }
